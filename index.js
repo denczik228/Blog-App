@@ -2,7 +2,6 @@ const express = require ("express");
 const dotenv = require("dotenv").config();
 const bodyParser = require('body-parser');
 const cors = require("cors");
-const jwt = require ("jsonwebtoken");
 const mongoose = require ("mongoose");
 const AuthRouter = require('./routes/AuthRoutes');
 
@@ -15,9 +14,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 //app.use(express.json());
 app.use('/api/user', AuthRouter);
-app.use('/api/check', (req, res) => {
-  res.json({ msg: `hello its work` })
-})
+// app.use('/api/check', (req, res) => {
+//   res.json({ msg: `hello its work` })
+// })
 
 mongoose
   .set("strictQuery", false)

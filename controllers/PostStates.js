@@ -15,6 +15,7 @@ const postCreation = asyncHandler(async (req, res) => {
 const findPost = asyncHandler(async (req, res) => {
   try {
     const { id } = req.params;
+    validateMongDBid();
     const fPost = await Posts.findByIdAndUpdate({ _id: id }, { $inc: { viewsCount: 1 } }, {new: true});
     res.json({ msg: `post was found succesfully:`, fPost });
   } catch (error) {
@@ -35,6 +36,7 @@ const allPosts = asyncHandler(async (req, res) => {
 const updPost = asyncHandler(async (req, res) => {
   try {
     const { id } = req.params;
+    validateMongDBid();
     const upPost = await Posts.findByIdAndUpdate(
       { _id: id },
       req.body,
@@ -48,6 +50,7 @@ const updPost = asyncHandler(async (req, res) => {
 const delPost = asyncHandler(async (req, res) => {
   try {
     const { id } = req.params;
+    validateMongDBid();
     const dPost = await Posts.findByIdAndDelete({ _id: id });
     res.json({ msg: 'post was deleted succesfully', dPost });
   } catch (error) {
